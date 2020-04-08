@@ -1,0 +1,111 @@
+<h1>Client List</h1>
+<div class="button-div">
+    <button class="button2" id="myBtn">Add a Client</button>
+</div>
+
+<div id="myModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>Add a Client</h2>
+        </div>
+        <form class="client-form" method="POST" action="/add-client" enctype="multipart/form-data">
+
+            <div>
+                <input class="text-input" type="text" name="name" placeholder="Name" />
+            </div>
+            <div>
+                <input class="text-input" type="text" name="phone" placeholder="Phone Number" />
+            </div>
+            <div>
+                <input class="text-input" type="text" name="address" placeholder="Home Address" />
+            </div>
+            <div>
+                <input class="text-input" type="text" name="email" placeholder="Email" />
+            </div>
+            <div>
+                <input id="file-client" type="file" name="profileImage">
+                <label for="file-client" />Select a Profile Picture</label>
+
+            </div>
+            <input type="hidden" name="id" value="{{client.id}}" />
+            <div class="button-div">
+                <button class="button2" type="submit">Add Client</button>
+            </div>
+
+        </form>
+        <br />
+        </form>
+    </div>
+</div>
+<div class="search-div">
+    <input type='search' id='search' placeholder="Search Clients" onkeyup="search()" type="text" name="client-search">
+</div>
+
+<div class="client-content">
+    <div class="card-div">
+        {{#each client}}
+        <div class="client-card">
+            <div><a href="/delete-client/{{this.id}}"><button class="delete-client"><img class="scissors"
+                            src="/css/images/scissors-icon.png"></button></a></div>
+            <div class="client-name">
+                {{this.name}}
+            </div>
+            <div>
+                <img class="client-profile-image" src="/images/{{this.profileImage}}">
+            </div>
+            <div class="card-info">
+                <div class="info1">
+                    Phone: {{this.phone}}
+                </div>
+                <br>
+                <div class="info1">
+                    Email: {{this.email}}
+                </div>
+            </div>
+            <div class="home-buttons">
+                <a href="/add-client/{{ this.id }}"><button class="client-edit">Edit</button></a>
+                <a href="/profile/{{ this.id }}"><button class="client-profile">Profile</button></a>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+
+</div>
+<script>
+    function search() {
+        let input = document.getElementById('search').value
+        input = input.toLowerCase();
+
+        let x = document.getElementsByClassName('client-card');
+
+        for (i = 0; i < x.length; i++) {
+            if (!x[i].innerHTML.toLowerCase().includes(input)) {
+                x[i].style.display = "none";
+            }
+            else {
+                x[i].style.display = "block";
+            }
+        }
+    }
+
+</script>
+<script>
+    var modal = document.getElementById("myModal");
+    var btn = document.getElementById("myBtn");
+    var span = document.getElementsByClassName("close")[0];
+
+    btn.onclick = function () {
+        modal.style.display = "block";
+    }
+
+    span.onclick = function () {
+        modal.style.display = "none";
+    }
+
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+</script>

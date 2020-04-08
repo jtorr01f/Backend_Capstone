@@ -1,0 +1,66 @@
+<div class="home-content">
+    <div class="home-header">
+        <h1> Welcome, {{ user.name }}!!</h1>
+        <h2>Heres a look at your appointments for the day!</h2>
+        <!-- <div class="button-div">
+            <a href="/user-profile/{{user.id}}"><button class="button2">Profile</button></a>
+        </div> -->
+    </div>
+    <div class="card-div">
+        {{#each appointment}}
+        <div class="client-card">
+            <div class="home-client">
+                <a href="/profile/{{this.client.id}}">
+                    <button class="button4">{{ this.client.name }}</button>
+                </a>
+            </div>
+            <div>
+                <img class="client-profile-image" src="/images/{{this.client.profileImage}}">
+            </div>
+            <div class="home-time">
+                {{ dateFormat this.appointmentDateTime "h:mm a" }}
+            </div>
+            <input type="hidden">
+            <div class="home-buttons">
+                <a href="/appointment-list"><button class="home-edit">Appointment Page</button></a>
+                <a><button data-appointmentId="{{this.id}}" class="appBtn" id="home-start">Start</button></a>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</div>
+
+<script src="/lib/axios/axios.min.js"></script>
+
+<!--<script>
+    document.addEventListener('click', async (e) => {
+
+        e.preventDefault();
+
+        const appBtn = document.getElementsByClassName('appBtn')
+
+        if (appBtn.innerText == 'Start') {
+
+            appBtn.innerText = "Finish"
+            appBtn.style.backgroundColor = 'red';
+            appBtn.style.color = 'white';
+
+        }
+        else if (appBtn.innerText == 'Archive') {
+            if (confirm("Are you sure you want to archive this appointment?")) {
+                let appointmentId = e.target.getAttribute('data-appointmentId');
+                let url = '/appointment-archive/home-archive-event/' + appointmentId;
+                let response = await axios.get(url);
+                let addObj = response.data;
+                location.reload()
+            }
+            else {
+                alert("Appointment not archived");
+            }
+        }
+        else {
+            appBtn.innerText = 'Archive'
+            appBtn.style.backgroundColor = 'grey'
+        }
+    })
+</script>-->

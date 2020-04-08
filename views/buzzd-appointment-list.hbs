@@ -1,0 +1,97 @@
+<div>
+    <a href="/appointment-archive"><button class="button5">Archive</button></a>
+</div>
+<div>
+    <h1>Appointment List</h1>
+</div>
+<div class="button-div">
+    <button class="button2" id="myBtn">Schedule an Appointment</button>
+</div>
+
+<div id="myModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>Schedule an Appointment</h2>
+        </div>
+            <form id="appointment-form" class="appointment-form" method="POST" action="/add-appointment">
+
+                <div>
+                    <select form="appointment-form" class="select-input" name="clientId">
+                        <option>Select a Client</option>
+                        {{#each client}}
+                        <option value="{{this.id}}">{{this.id}}: {{this.name}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+                <div>
+                    <input class="text-input" type="text" name="service" placeholder="Service" />
+                </div>
+                <div>
+                    <input class="text-input" type="text" name="style" placeholder="Style" />
+                </div>
+                <div>
+                    <input id="appDate" class="text-input" type="datetime-local" name="appointmentDateTime"
+                        value="{{ moment d "YYYY-MM-DDThh:mm"}}" />
+                </div>
+                <input type="hidden" name="id" value="{{appointment.id}}" />
+                <div class="button-div">
+                    <button class="button2" type="submit">Schedule Appointment</button>
+                </div>
+
+            </form>
+            <br />
+    </div>
+</div>
+<table id="buzzdList" class="display">
+    <thead>
+        <tr>
+            <th>Client Name</th>
+            <th>Stylist Name</th>
+            <th>Service</th>
+            <th>Style</th>
+            <th>Date and Time</th>
+            <th>Actions</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        {{#each appointment}}
+        <tr>
+            <td>{{ this.client.name }}</td>
+            <td>{{ this.user.name }}</td>
+            <td>{{ this.service }}</td>
+            <td>{{ this.style }}</td>
+            <td>{{ dateFormat this.appointmentDateTime "MMM D YYYY h:mm a" }}</td>
+            <td>
+                <a href="/edit-appointment/{{this.id}}"><button class="edit">Edit</button></a>
+                <a href="/appointment-archive/archive-event/{{this.id}}"><button class="archive">Archive</button></a>
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+<script>
+    var modal = document.getElementById("myModal");
+    var btn = document.getElementById("myBtn");
+    var span = document.getElementsByClassName("close")[0];
+
+    btn.onclick = function () {
+        modal.style.display = "block";
+    }
+
+    span.onclick = function () {
+        modal.style.display = "none";
+    }
+
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<script>
+    $('appDate').now()
+</script>

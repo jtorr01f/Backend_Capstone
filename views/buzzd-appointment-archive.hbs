@@ -1,0 +1,35 @@
+<h1>
+    Archived Apointments
+</h1>
+<div class="button-div">
+    <a href="/appointment-list"><button class="button2">Back to Appointments</button></a>
+
+</div>
+<table id="buzzdList" class="display">
+    <thead>
+        <tr>
+            <th>Client Name</th>
+            <th>Stylist Name</th>
+            <th>Service</th>
+            <th>Style</th>
+            <th>Date and Time</th>
+            <th>Actions</th>
+
+
+
+        </tr>
+    </thead>
+    <tbody>
+        {{#each appointment}}
+        <tr>
+            <td>{{ this.client.name }}</td>
+            <td>{{ this.user.name }}</td>
+            <td>{{ this.service }}</td>
+            <td>{{ this.style }}</td>
+            <td>{{ dateFormat this.appointmentDateTime "MMM D YYYY h:mm a" }}</td>
+            <td><a href="/delete-archive/{{this.id}}"><button class="delete">X</button></a></td>
+
+        </tr>
+        {{/each}}
+    </tbody>
+</table>

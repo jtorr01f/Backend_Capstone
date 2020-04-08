@@ -1,0 +1,54 @@
+{
+  "name": "capstone-jtorr01f",
+  "version": "1.0.0",
+  "description": "a hair stylist hub. In this hub, they will have product inventory management, client information, client session/service information and user time management.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "precommit": "lint-staged"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uark-backend-class/capstone-jtorr01f.git"
+  },
+  "author": "Justin Torres",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/uark-backend-class/capstone-jtorr01f/issues"
+  },
+  "homepage": "https://github.com/uark-backend-class/capstone-jtorr01f#readme",
+  "dependencies": {
+    "@google-cloud/storage": "^3.2.1",
+    "axios": "^0.19.0",
+    "connect-flash": "^0.1.1",
+    "express": "^4.17.1",
+    "express-handlebars": "^3.1.0",
+    "express-session": "^1.16.2",
+    "express-session-sequelize": "^2.1.0",
+    "handlebars-dateformat": "^1.1.1",
+    "handlebars.moment": "^1.0.4",
+    "mariadb": "^2.1.0",
+    "moment": "^2.24.0",
+    "moment-timezone": "^0.5.26",
+    "mssql": "^5.1.0",
+    "multer": "^1.4.2",
+    "mysql2": "^1.7.0",
+    "passport": "^0.4.0",
+    "passport-local-sequelize": "^0.9.0",
+    "sequelize": "^5.10.0"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "eslint": "^6.3.0",
+    "husky": "^3.0.5",
+    "lint-staged": "^9.2.5",
+    "prettier": "^1.18.2"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run precommit"
+    }
+  }
+}

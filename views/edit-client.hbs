@@ -1,0 +1,28 @@
+<div>
+    <h1>Edit {{client.name}}'s Details</h1>
+</div>
+<form class="client-form" method="POST" action="/add-client">
+
+    <div class="client-first-div">
+        <input class="text-input" type="text" name="name" value="{{client.name}}"
+            placeholder="First Name" />
+    </div>
+
+    <div class="client-phone-div">
+        <input class="text-input" type="text" name="phone" value="{{client.phone}}" placeholder="Phone Number" />
+    </div>
+    <div class="client-address-div">
+        <input class="text-input"  type="text" name="address" value="{{client.address}}"
+            placeholder="Home Address" />
+    </div>
+    <div class="client-email-div">
+        <input class="text-input"  type="text" name="email" value="{{client.email}}" placeholder="Email" />
+    </div>
+        <input id="file-client" type="file" name="profileImage">
+            <label for="file-client" />Select a Profile Picture</label>
+    <input type="hidden" name="id" value="{{client.id}}" />
+    <div class="button-div">
+        <button class="button2" type="submit">Confirm Edit</button>
+    </div>
+
+</form>

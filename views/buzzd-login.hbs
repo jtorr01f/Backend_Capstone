@@ -1,0 +1,86 @@
+<form method="POST" action="/login">
+    {{#if flashes}}
+    <div class="flash">
+        {{ flashes }}
+    </div>
+    {{/if}}
+
+    <div>
+        <h1>Log In</h1>
+    </div>
+
+    <div>
+        <input class="text-input" type="text" name="username" placeholder="Username" />
+    </div>
+    <div>
+        <input class="text-input" type="password" name="password" placeholder="Password" />
+    </div>
+    <div class="button-div">
+        <button class="button2" type="submit">Log In</button>
+    </div>
+</form>
+<div class="button-div">
+    <button class="button2" id="myBtn">Not a User? Register Here!</button>
+</div>
+
+<div id="myModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>Register User</h2>
+        </div>
+        <form method="POST" action="/register-user" enctype="multipart/form-data">
+
+            <div class="user-info">
+                <h1>User Details</h1>
+                <div>
+                    <input class="text-input2" type="text" name="name" placeholder="Name" />
+                </div>
+                <div>
+                    <input class="text-input2" type="text" name="phone" placeholder="Phone Number" />
+                </div>
+                <div>
+                    <input class="text-input2" type="text" name="email" placeholder="Email" />
+                </div>
+
+                <div>
+                    <input id="file-user" type="file" name="profileImage" />
+                    <label for="file-user" />Select a Profile Picture</label>
+                </div>
+            </div>
+
+            <div class="username-password">
+                <h1>Username and Password</h1>
+                <div>
+                    <input class="text-input2" type="text" name="username" placeholder="Desired Username" />
+                </div>
+                <div>
+                    <input class="text-input2" type="password" name="password" placeholder="Desired Password" />
+                </div>
+            </div>
+            <div class="button-div">
+                <button class="button2" type="submit">Register User</button>
+            </div>
+        </form>
+        <br />
+    </div>
+</div>
+<script>
+    var modal = document.getElementById("myModal");
+    var btn = document.getElementById("myBtn");
+    var span = document.getElementsByClassName("close")[0];
+
+    btn.onclick = function () {
+        modal.style.display = "block";
+    }
+
+    span.onclick = function () {
+        modal.style.display = "none";
+    }
+
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+</script>

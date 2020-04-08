@@ -1,0 +1,12 @@
+<div>
+    <h1>Change Category</h1>
+</div>
+<form class="category-form" method="POST" action="/add-category">
+
+    <div class="category-div">
+        <input class="content" type="text" name="value" placeholder="Category" value="{{cat.value}}" />
+    </div>
+    <input type="hidden" name="id" value="{{cat.id}}" />
+    <div class="button-div">
+     <button class="button2" type="submit">Confirm Edit</button>
+</form>

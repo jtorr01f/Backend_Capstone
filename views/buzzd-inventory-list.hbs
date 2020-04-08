@@ -1,0 +1,168 @@
+<div class="button-div2">
+    <a href="/manufacturer-list"><button class="button1">Manufacturers</button></a>
+</div>
+<div class="button-div2">
+    <a href="/category-list"><button class="button1">Categories</button></a>
+</div>
+<h1>Buzz'd Inventory List</h1>
+<div class="button-div">
+    <button class="button2" id="myBtn2">Add a Single Item</button>
+    <button class="button2" id="myBtn">Bulk Add Items</button>
+</div>
+
+<div id="myModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">x</span>
+            <h2>Upload Items</h2>
+        </div>
+        <form method="POST" action="" enctype="multipart/form-data">
+            <input id="file-client" type="file" name="profileImage">
+            <label for="file-client" />Upload CSV</label>
+            <div class="button-div">
+                <button class="button2">Submit</button>
+            </div>
+            <br />
+        </form>
+    </div>
+</div>
+
+<div id="myModalTwo" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">x</span>
+            <h2>Add an Item</h2>
+        </div>
+        <form id="inv-form" class="inv-form" method="POST" action="/add-item">
+            <div>
+                <select form="inv-form" class="select-input" name="manufacturer">
+                    <option>Select a Manufacturer</option>
+                    {{#each manufacturer}}
+                    <option value="{{this.value}}">{{this.value}}</option>
+                    {{/each}}
+                </select>
+            </div>
+            <div>
+                <input class="text-input" type="text" name="productName" placeholder="Product Name" />
+            </div>
+            <div>
+                <select form="inv-form" class="select-input" name="category">
+                    <option>Select a Category</option>
+                    {{#each category}}
+                    <option class="option" value="{{this.value}}">{{this.value}}</option>
+                    {{/each}}
+                </select>
+            </div>
+            <div>
+                <input class="text-input" type="text" name="formula" placeholder="Color Formula" />
+            </div>
+            <div>
+                <input class="text-input" type="text" name="price" placeholder="Price" />
+            </div>
+            <div>
+                <input class="text-input" type="text" name="inStock" placeholder="Stock" />
+            </div>
+            <div>
+                <input class="text-input" type="text" name="upc" placeholder="Product UPC" />
+            </div>
+            <input type="hidden" name="id" value="{{inventory.id}}" />
+            <div>
+                <button class="submit" type="submit">Add Item</button>
+            </div>
+
+        </form>
+        <br />
+    </div>
+</div>
+
+</div>
+<table id="buzzdList" class="display">
+    <thead>
+        <tr>
+            <th>Manufacturer</th>
+            <th>Product Name</th>
+            <th>Category</th>
+            <th>Price</th>
+            <th>Stock</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each items}}
+        <tr>
+            <td>{{this.manufacturer}}</td>
+            <td>{{this.productName}}</td>
+            <td>{{this.category}}</td>
+            <td>{{this.price}}</td>
+            <td><button id="subtract" data-productId="{{this.id}}" class="changeInv minus">-</button>
+                <span id="stock-{{this.id}}" data-productId="{{this.id}}">{{this.inStock}}</span>
+                <button id="add-" data-productId="{{this.id}}" class="changeInv plus">+</button>
+            </td>
+            <td><a href="/delete-Item/{{ this.id }}"><button class="delete">X</button></a>
+                <a href="/add-item/{{ this.id }}"><button class="edit">Edit</button></a></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+<script src="/lib/axios/axios.min.js"></script>
+
+
+<script>
+    document.addEventListener('click', async (e) => {
+        if (e.target.className.includes('changeInv')) {
+            let productId = e.target.getAttribute('data-productId');
+            let url;
+            if (e.target.className.includes('plus')) {
+                url = "/api/increment/" + productId;
+            }
+            else {
+                url = "/api/decrement/" + productId;
+
+            }
+            let response = await axios.get(url);
+            let addObj = response.data;
+
+            document.getElementById('stock-' + productId).innerText = addObj;
+        }
+
+    })
+</script>
+<script>
+    document.addEventListener('click', async (e) => {
+        let url = '/api/bulkAdd'
+        let bulkAdd = e.target.className.includes('bulkAdd');
+
+
+    })
+</script>
+<script>
+    var modal = document.getElementById("myModal");
+    var modal2 = document.getElementById("myModalTwo");
+    var btn = document.getElementById("myBtn");
+    var btn2 = document.getElementById("myBtn2");
+    var span = document.getElementsByClassName("close")[0];
+
+
+    btn.onclick = function () {
+        modal.style.display = "block";
+    }
+    btn2.onclick = function () {
+        modal2.style.display = "block";
+    }
+
+    span.onclick = function () {
+        modal.style.display = "none";
+        modal2.style.display = "none";
+
+    }
+
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+        if (event.target == modal2) {
+            modal2.style.display = "none";
+        }
+    }
+</script>

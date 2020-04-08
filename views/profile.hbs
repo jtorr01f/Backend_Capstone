@@ -1,0 +1,23 @@
+<div class="profile">
+    <div class="client-info-name">
+        {{client.name}}
+    </div>
+    <div class="profileImage">
+        <img class="client-profile-image" src="/images/{{client.profileImage}}">
+    </div>
+    <div class="card-info">
+            <div class="info1">
+              Address -  {{client.address}}
+            </div>
+            <br/>
+            <div class="info1">
+              Phone -   {{client.phone}}
+            </div>
+            <br/>
+            <div class="info1">
+              Email -  {{client.email}}
+            </div>
+    </div>
+    <a href="/edit-client/{{client.id}}"><button class="client-edit">Edit</button></a>
+
+</div>

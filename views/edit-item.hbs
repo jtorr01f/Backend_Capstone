@@ -1,0 +1,44 @@
+<div>
+    <h1>Edit Item</h1>
+</div>
+<form id="inv-form" class="inv-form" method="POST" action="/add-item">
+
+    <div>
+        <select form="inv-form"  class="select-input" name="manufacturer">
+            <option value="{{item.manufacturer}}">{{item.manufacturer}}</option>
+            {{#each man}}
+            <option value="{{this.value}}">{{this.value}}</option>
+            {{/each}}
+        </select>
+    </div>
+    <div>
+        <input class="text-input" value="{{item.productName}}" type="text" name="productName" placeholder="Product Name" />
+    </div>
+    <div>
+        <select form="inv-form" class="select-input" name="category">
+            <option value="{{item.category}}">{{item.category}}</option>
+            {{#each cat}}
+            <option class="option" value="{{this.value}}">{{this.value}}</option>
+            {{/each}}
+        </select>
+    </div>
+    <div>
+        <input class="text-input" value="{{item.formula}}" type="text" name="formula" placeholder="Color Formula" />
+    </div>
+    <div>
+        <input class="text-input" value="{{item.price}}" type="text" name="price" placeholder="Price" />
+    </div>
+    <div>
+        <input class="text-input" value="{{item.inStock}}" type="text" name="inStock" placeholder="Stock" />
+    </div>
+    <div>
+        <input class="text-input" value="{{item.upc}}" type="text" name="upc" placeholder="Product UPC" />
+    </div>
+    <input type="hidden" name="itemid" value="{{item.id}}" />
+    <input type="hidden" name="manid" value="{{man.id}}" />
+    <input type="hidden" name="catid" value="{{cat.id}}" />
+    <div class="button-div">
+        <button class="button2" type="submit">Edit Item</button>
+    </div>
+
+</form>

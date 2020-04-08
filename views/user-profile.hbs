@@ -1,0 +1,34 @@
+<div>
+    <div>
+        <div>
+            <img class="client-profile-image" src="/images/{{user.profileImage}}">
+        </div>
+        <form>
+            <button id="clock">Clock In</button>
+        </form>
+    </div>
+
+</div>
+
+    <script>
+
+        const clock = document.getElementById('clock');
+
+        clock.addEventListener('click', (e) => {
+
+            e.preventDefault();
+
+            if (clock.innerText == 'Clock In') {
+
+                clock.innerText = 'Clock Out';
+                clock.style.backgroundColor = 'red';
+
+            }
+            else if (clock.innerText == 'Clock Out') {
+                clock.innerText = 'Clock In';
+                clock.style.backgroundColor = 'green';
+            }
+
+        })
+
+    </script>

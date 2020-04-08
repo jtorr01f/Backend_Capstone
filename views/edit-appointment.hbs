@@ -1,0 +1,34 @@
+<div>
+    <div>
+        <h1>Change Appointment</h1>
+    </div>
+    <form id="appointment-form" class="appointment-form" method="POST" action="/add-appointment">
+
+        <div>
+            <select form="appointment-form" class="select-input" name="clientId">
+                <option value="{{appointment.client.name}}">{{appointment.clientId}}: {{appointment.Client.name}}
+                </option>
+                {{#each client}}
+                <option value="{{this.name}}">{{this.id}}: {{this.name}}</option>
+                {{/each}}
+            </select>
+        </div>
+        <div>
+            <input class="text-input" type="text" name="service" placeholder="Service Requested"
+                value="{{appointment.service}}" />
+        </div>
+        <div>
+            <input class="text-input" type="text" name="style" placeholder="Style" value="{{appointment.style}}" />
+        </div>
+        <div>
+            <input id="appDate" class="text-input" type="datetime-local" name="appointmentDateTime"
+                value="{{moment appointment.appointmentDateTime "YYYY-MM-DDThh:mm" }}" />
+        </div>
+        <input type="hidden" name="id" value="{{appointment.id}}" />
+        <div class="button-div">
+            <button class="button2" type="submit">Confirm Edit</button>
+        </div>
+
+    </form>
+</div>
+
